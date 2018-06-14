@@ -1,17 +1,18 @@
-from sense_hat import SenseHat, ACTION_PRESSED, ACTION_RELEASED
-import config.py
+from sense_emu import SenseHat, ACTION_PRESSED, ACTION_RELEASED
+from config import *
 
 sense = SenseHat()
         
 def ID_Choice():
-    global ID
+    sense.show_message(str(config.ID), config.TEXTSPEED)
     for event in sense.stick.get_events():
         if event.action == "released":
             return
         if event.direction == "middle":
-                ID_Set = True
+                config.ID_Set = True
         elif event.direction == "right":
-                ID += 1
+                config.ID += 1
         elif event.direction == "left":
-                ID -= 1
-        sense.show_message(str(ID), TextSpeed)
+                config.ID -= 1
+        sense.show_message(str(config.ID), config.TEXTSPEED)
+    print(config.ID_Set)
