@@ -29,5 +29,5 @@ def ReceiveCL():
         print("waiting")
         data,address = CLs.recvfrom(config.PACKET_SIZE)
         print("received " + str(len(pickle.loads(data))) + " from " + str(address))
-        print(pickle.loads(data))
+        #print(pickle.loads(data))
         return pickle.loads(data)

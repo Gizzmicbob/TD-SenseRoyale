@@ -7,7 +7,7 @@ DisplaySense = SenseHat()
 def UpdateDisplaySVR():
         networking.SendArrCL()
 def UpdateDisplayCL(map):
-        print(len(map))
+        #print(len(map))
         SenseHat().set_pixels(map)
 def SendID():
         DisplaySense.show_message(str(config.ID), config.TEXTSPEED)

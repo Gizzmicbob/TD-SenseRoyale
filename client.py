@@ -4,6 +4,11 @@ import socket
 import display
 import math
 import networking
+import resource
+
+resource.setrlimit(
+    resource.RLIMIT_CORE,
+    (resource.RLIM_INFINITY, resource.RLIM_INFINITY))
 
 ##Below code kind basic idea, probs won't work yet though##
 
@@ -32,10 +37,14 @@ def Dropper():
             fPos = x"""
     x = fPos
     while x < fPos + (sideLen * config.SCREEN_SIZE):
+       # print(x)
         miniMap.append(config.MAP[x])
         if x == fPos + config.SCREEN_SIZE - 1: #might work?
-            x += sideLen #+/-
+            x += sideLen // 2 #+/-
             fPos = x
+        if x > config.SCREEN_SIZE * sideLen:
+            break
+        x += 1
     display.UpdateDisplayCL(miniMap)
     miniMap = []
 

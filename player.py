@@ -4,4 +4,4 @@ class Player:
 		self.position = position
 		self.old = position
 		PlayerList.append(self)
-Player1 = Player(1)
+Player1 = Player(127)
