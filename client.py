@@ -2,7 +2,7 @@ import config
 import menu
 import socket
 import display
-s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+import math
 
 ##Below code kind basic idea, probs won't work yet though##
 
@@ -29,13 +29,12 @@ while True:
         menu.ID_Choice()
     else:
         config.MAP = [] #this to not have a huge map in config, and to make it automatically get a size
-        for x in range(math.sqrt(config.PI_COUNT) * config.SCREEN_SIZE * 2):
-            config.MAP.append(config.Color0)
+        for x in range(int(config.PI_COUNT * config.SCREEN_SIZE)):
+                config.MAP.append(config.Color0)
         s.bind((config.HOST, config.PORT))
-        conn, addr = s.accept()
+        #conn, addr = s.accept()
         break
         print("working?")
-    print(config.ID_Set)
 while True:
-    config.MAP = conn.recv(4096).decode()
+    config.MAP = networking.ReceiveCL()
     Dropper()

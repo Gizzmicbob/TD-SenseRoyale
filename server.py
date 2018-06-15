@@ -1,11 +1,14 @@
-import config.py
-import menu.py
-import display.py
+import config
+import menu
+import display
+import math
+import game
+import pickle
 
-MAP = [] #this to not have a huge map in config, and to make it automatically get a size
-	for x in range(math.sqrt(PI_COUNT) * SCREEN_SIZE * 2):
-		MAP.append(Color0)
+config.MAP = [] #this to not have a huge map in config, and to make it automatically get a size
+for x in range(int(config.PI_COUNT * config.SCREEN_SIZE)):
+        config.MAP.append(config.Color0)
 
 while True:
-	runGame()
-	UpdateDisplaySVR(HOST, PORT, ARRAY)
+        game.runGame()
+        display.UpdateDisplaySVR()

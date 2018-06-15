@@ -1,10 +1,12 @@
-import networking.py
-import config.py
-from sense_hat import SenseHat
+import networking
+import config
+from sense_emu import SenseHat
+
+DisplaySense = SenseHat()
 
 def UpdateDisplaySVR():
-	SendArrCL(HOST,PORT,MAP)
+	networking.SendArrCL()
 def UpdateDisplayCL(map):
 	SenseHat().set_pixels(map)
 def SendID():
-	SenseHat().show_message(str(config.ID), config.TEXTSPEED)
+	DisplaySense.show_message(str(config.ID), config.TEXTSPEED)
