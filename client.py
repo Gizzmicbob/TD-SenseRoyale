@@ -3,6 +3,7 @@ import menu
 import socket
 import display
 import math
+import networking
 
 ##Below code kind basic idea, probs won't work yet though##
 
@@ -16,11 +17,25 @@ def Dropper():
     remainder = pPlace % sideLen #position after drop
     fPos = dropAmount + remainder #final position
     miniMap = []
-    for x in range(fPos, fPos + ((config.SCREEN_SIZE - 1) * sideLen + config.SCREEN_SIZE)): #400, idk why
+    fPos = int(fPos)
+    remainder = int(remainder)
+    sideLen = int(sideLen)
+    """print(fPos)
+    print(remainder)
+    print(sideLen)
+    print(len(config.MAP))"""
+    #for x in range(fPos, fPos + ((config.SCREEN_SIZE - 1) * sideLen + config.SCREEN_SIZE)): #400, idk why
+    """for x in range(fPos, fPos + (sideLen * config.SCREEN_SIZE)):
         miniMap.append(config.MAP[x])
-    if x == fPos + config.SCREEN_SIZE - 1: #might work?
-        x += sideLen #+/-
-        fPos = x
+        if x == fPos + config.SCREEN_SIZE - 1: #might work?
+            x += sideLen #+/-
+            fPos = x"""
+    x = fPos
+    while x < fPos + (sideLen * config.SCREEN_SIZE):
+        miniMap.append(config.MAP[x])
+        if x == fPos + config.SCREEN_SIZE - 1: #might work?
+            x += sideLen #+/-
+            fPos = x
     display.UpdateDisplayCL(miniMap)
     miniMap = []
 
@@ -29,9 +44,10 @@ while True:
         menu.ID_Choice()
     else:
         config.MAP = [] #this to not have a huge map in config, and to make it automatically get a size
-        for x in range(int(config.PI_COUNT * config.SCREEN_SIZE)):
+        for x in range(int(config.PI_COUNT * config.SCREEN_SIZE * config.SCREEN_SIZE)):
                 config.MAP.append(config.Color0)
-        s.bind((config.HOST, config.PORT))
+        print(len(config.MAP))
+        #s.bind((config.HOST, config.PORT))
         #conn, addr = s.accept()
         break
         print("working?")

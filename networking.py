@@ -18,7 +18,7 @@ CLs.setsockopt(socket.IPPROTO_IP,socket.IP_ADD_MEMBERSHIP,mreq)
 def SendArrSVR(server, port, array):
     s.connect((server,port))
     s.send(array.encode())
-    result = s.recv(4096)
+    result = s.recv(PACKET_SIZE)
 
 def SendArrCL():
         SVs.sendto(pickle.dumps(config.MAP), (config.CAST,config.PORT))
@@ -27,7 +27,7 @@ s.send(pickle.dumps(config.MAP))
 result = s.recv(4096)"""
 def ReceiveCL():
         print("waiting")
-        data,address = CLs.recvfrom(4096)
-        print("received" + str(len(dat) + " from " + address))
-        print(data)
+        data,address = CLs.recvfrom(config.PACKET_SIZE)
+        print("received " + str(len(pickle.loads(data))) + " from " + str(address))
+        print(pickle.loads(data))
         return pickle.loads(data)
