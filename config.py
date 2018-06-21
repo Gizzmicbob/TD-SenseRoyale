@@ -1,5 +1,8 @@
-HOST = '127.0.0.1'
+import player
+
+HOST = '172.17.58.110'
 PORT = 5000
+PORT2 = 5001
 CAST = '224.0.0.1'
 
 TEXTSPEED = 0.04
@@ -7,6 +10,7 @@ TEXTSPEED = 0.04
 ###
 
 ID = 0
+ControllerID = 1
 ID_Set = False
 
 ###
@@ -20,6 +24,21 @@ TTM = 500
 ###
 
 PACKET_SIZE = 8192
+
+###
+
+TickRate = 0.3
+
+###
+
+UP = 119
+DOWN = 115
+LEFT = 97
+RIGHT = 100
+
+###
+
+CONTROLLING = player.Player1
 
 ###
 

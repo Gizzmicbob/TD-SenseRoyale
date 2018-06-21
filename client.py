@@ -5,6 +5,7 @@ import display
 import math
 import networking
 import resource
+import funcs
 
 resource.setrlimit(
     resource.RLIMIT_CORE,
@@ -25,24 +26,16 @@ def Dropper():
     fPos = int(fPos)
     remainder = int(remainder)
     sideLen = int(sideLen)
-    """print(fPos)
-    print(remainder)
-    print(sideLen)
-    print(len(config.MAP))"""
-    #for x in range(fPos, fPos + ((config.SCREEN_SIZE - 1) * sideLen + config.SCREEN_SIZE)): #400, idk why
-    """for x in range(fPos, fPos + (sideLen * config.SCREEN_SIZE)):
-        miniMap.append(config.MAP[x])
-        if x == fPos + config.SCREEN_SIZE - 1: #might work?
-            x += sideLen #+/-
-            fPos = x"""
     x = fPos
-    while x < fPos + (sideLen * config.SCREEN_SIZE):
-       # print(x)
-        miniMap.append(config.MAP[x])
-        if x == fPos + config.SCREEN_SIZE - 1: #might work?
-            x += sideLen // 2 #+/-
-            fPos = x
-        if x > config.SCREEN_SIZE * sideLen:
+    iters = 1
+    sPos = fPos
+    while x < fPos + (sideLen * config.SCREEN_SIZE): #probs not right
+        miniMap.append(config.MAP[int(x)])
+        if x == sPos + config.SCREEN_SIZE or x == config.SCREEN_SIZE - 1: #be sure 0 works
+            x += funcs.DropLine() - config.SCREEN_SIZE #+/-
+            sPos = x
+            iters += 1
+        if len(miniMap) == 64: #wrong
             break
         x += 1
     display.UpdateDisplayCL(miniMap)
@@ -55,11 +48,7 @@ while True:
         config.MAP = [] #this to not have a huge map in config, and to make it automatically get a size
         for x in range(int(config.PI_COUNT * config.SCREEN_SIZE * config.SCREEN_SIZE)):
                 config.MAP.append(config.Color0)
-        print(len(config.MAP))
-        #s.bind((config.HOST, config.PORT))
-        #conn, addr = s.accept()
         break
-        print("working?")
 while True:
     config.MAP = networking.ReceiveCL()
     Dropper()
