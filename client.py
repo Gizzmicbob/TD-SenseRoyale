@@ -19,7 +19,7 @@ def Dropper():
     sideLen = math.sqrt(config.PI_COUNT) * config.SCREEN_SIZE #length of a side of the whole display
     pPlace = config.ID * config.SCREEN_SIZE - config.SCREEN_SIZE #start position - remember, array starts at 0
     drops = pPlace // sideLen
-    dropAmount = max(drops * config.SCREEN_SIZE * sideLen - 1, 0) #how much to drop, -1 zero it for array
+    dropAmount = max(drops * config.SCREEN_SIZE * sideLen, 0) #how much to drop, -1 zero it for array
     remainder = pPlace % sideLen #position after drop
     fPos = dropAmount + remainder #final position
     miniMap = []
@@ -30,6 +30,7 @@ def Dropper():
     iters = 1
     sPos = fPos
     while x < fPos + (sideLen * config.SCREEN_SIZE): #probs not right
+        print(x)
         miniMap.append(config.MAP[int(x)])
         if x == sPos + config.SCREEN_SIZE or (iters == 1 and x == sPos + config.SCREEN_SIZE - 1): #be sure 0 works
             x += funcs.DropLine() - config.SCREEN_SIZE #+/-
