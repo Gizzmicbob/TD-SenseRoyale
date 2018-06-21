@@ -6,15 +6,15 @@ import math
 import networking
 import resource
 import funcs
-import tty, sys
 import curses
+import threading
 
 scr = curses.initscr()
-scr.nodelay(1)
 def GetInput():
-        key = scr.getch()
-        if key != -1:
-            networking.SendSVR(key, config.ControllerID)
+        while True:
+                key = scr.getch()
+                if key != -1:
+                    networking.SendSVR(key, config.ControllerID)
 
 def Control():
     print("banana")
@@ -26,34 +26,6 @@ resource.setrlimit(
 
 ##Below code kind basic idea, probs won't work yet though##
 
-##Dropper##
-def Dropper():
-    #subtract 1 to match array index at 0?
-    sideLen = math.sqrt(config.PI_COUNT) * config.SCREEN_SIZE #length of a side of the whole display
-    pPlace = config.ID * config.SCREEN_SIZE - config.SCREEN_SIZE #start position - remember, array starts at 0
-    drops = pPlace // sideLen
-    dropAmount = max(drops * config.SCREEN_SIZE * sideLen, 0) #how much to drop, -1 zero it for array
-    remainder = pPlace % sideLen #position after drop
-    fPos = dropAmount + remainder #final position
-    miniMap = []
-    fPos = int(fPos)
-    remainder = int(remainder)
-    sideLen = int(sideLen)
-    x = fPos
-    iters = 1
-    sPos = fPos
-    while x < fPos + (sideLen * config.SCREEN_SIZE): #probs not right
-        miniMap.append(config.MAP[int(x)])
-        if x == sPos + config.SCREEN_SIZE or (iters == 1 and x == sPos + config.SCREEN_SIZE - 1): #be sure 0 works
-            x += funcs.DropLine() - config.SCREEN_SIZE #+/-
-            sPos = x
-            iters += 1
-        if len(miniMap) == 64:
-            break
-        x += 1
-    display.UpdateDisplayCL(miniMap)
-    miniMap = []
-
 while True:
     if not config.ID_Set:
         menu.ID_Choice()
@@ -63,8 +35,12 @@ while True:
                 config.MAP.append(config.Color0)
         break
         print("working?")
-while True:
-    config.MAP = networking.ReceiveCL()
-    Dropper()
-    ######Client End######
-    GetInput()
+
+def main():
+        while True:
+            config.MAP = networking.ReceiveCL()
+
+InputThread = threading.Thread(target=GetInput)
+InputThread.start()
+MainThread = threading.Thread(target=main)
+MainThread.start()

@@ -7,28 +7,37 @@ import funcs
 curTime = time.time()
 
 def runGame(): #does the standard game stuff
-        for ply in player.PlayerList:
-                config.MAP[ply.position] = config.Color1 #sets next spot as a player
-                config.MAP[ply.old] = config.Color0 #sets old spot as a blank spot
+        i = 1
+        #for ply in player.PlayerList:
+                 #sets next spot as a player
+                #config.MAP[ply.old] = config.Color0 #sets old spot as a blank spot
 def GetPlayer(array):
         for ply in player.PlayerList:
                 if ply.id == array[1]:
                         return ply
         return "null"
-                         
+
+def ClearOld(ply):
+        ply.old = ply.position
+        config.MAP[ply.old] = config.Color0
 def ReceiveKey(array):
         ply = GetPlayer(array)
         if ply != "null":
+                print(ply.position)
                 if array[0] == config.UP:
-                        ply.old = ply.position
+                        ClearOld(ply)
                         ply.position -= funcs.DropLine()
+                        config.MAP[ply.position] = config.Color1
                 elif array[0] == config.RIGHT:
-                        ply.old = ply.position
+                        ClearOld(ply)
                         ply.position += 1
+                        config.MAP[ply.position] = config.Color1
                 elif array[0] == config.LEFT:
-                        ply.old = ply.position
+                        ClearOld(ply)
                         ply.position -= 1
+                        config.MAP[ply.position] = config.Color1
                 elif array[0] == config.DOWN:
-                        ply.old = ply.position
+                        ClearOld(ply)
                         ply.position += funcs.DropLine()
+                        config.MAP[ply.position] = config.Color1
         

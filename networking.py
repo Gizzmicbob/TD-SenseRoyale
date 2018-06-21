@@ -3,6 +3,7 @@ import config
 import pickle
 import struct
 import game
+import funcs
 
 ###SVR###
 SVs = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
@@ -32,6 +33,7 @@ def SendArrCL():
         print("send")
 def ReceiveCL():
         data,address = CLs.recvfrom(config.PACKET_SIZE)
+        funcs.Dropper()
         return pickle.loads(data)
 def ReceiveSVR():
     while True:

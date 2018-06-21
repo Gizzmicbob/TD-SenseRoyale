@@ -6,6 +6,7 @@ import math
 import networking
 import resource
 import funcs
+import threading
 
 resource.setrlimit(
     resource.RLIMIT_CORE,
@@ -30,7 +31,6 @@ def Dropper():
     iters = 1
     sPos = fPos
     while x < fPos + (sideLen * config.SCREEN_SIZE): #probs not right
-        print(x)
         miniMap.append(config.MAP[int(x)])
         if x == sPos + config.SCREEN_SIZE or (iters == 1 and x == sPos + config.SCREEN_SIZE - 1): #be sure 0 works
             x += funcs.DropLine() - config.SCREEN_SIZE #+/-
@@ -51,5 +51,4 @@ while True:
                 config.MAP.append(config.Color0)
         break
 while True:
-    config.MAP = networking.ReceiveCL()
-    Dropper()
+	config.MAP = networking.ReceiveCL()

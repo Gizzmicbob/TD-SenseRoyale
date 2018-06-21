@@ -27,7 +27,7 @@ PACKET_SIZE = 8192
 
 ###
 
-TickRate = 0.3
+TickRate = 0.1
 
 ###
 
