@@ -31,7 +31,7 @@ def Dropper():
     sPos = fPos
     while x < fPos + (sideLen * config.SCREEN_SIZE): #probs not right
         miniMap.append(config.MAP[int(x)])
-        if x == sPos + config.SCREEN_SIZE or x == config.SCREEN_SIZE - 1: #be sure 0 works
+        if x == sPos + config.SCREEN_SIZE or (iters == 1 and x == sPos + config.SCREEN_SIZE - 1): #be sure 0 works
             x += funcs.DropLine() - config.SCREEN_SIZE #+/-
             sPos = x
             iters += 1
