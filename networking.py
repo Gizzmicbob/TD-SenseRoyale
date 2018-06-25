@@ -30,7 +30,7 @@ def SendSVR(key, ID):
 
 def SendArrCL():
         SVs.sendto(pickle.dumps(config.MAP), (config.CAST,config.PORT))
-        print("send")
+        #print("send")
 def ReceiveCL():
         data,address = CLs.recvfrom(config.PACKET_SIZE)
         funcs.Dropper()

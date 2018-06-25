@@ -1,6 +1,6 @@
 import player
 
-HOST = '172.17.58.110'
+HOST = '172.20.189.183'
 PORT = 5000
 PORT2 = 5001
 CAST = '224.0.0.1'
