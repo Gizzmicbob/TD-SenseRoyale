@@ -7,12 +7,17 @@ import pickle
 import networking
 import time
 import threading
+import random
 
 Tick = time.time()
 
 config.MAP = [] #this to not have a huge map in config, and to make it automatically get a size
 for x in range(int(config.PI_COUNT * config.SCREEN_SIZE * config.SCREEN_SIZE)):
-        config.MAP.append(config.Color0)
+        i = random.randint(0,5)
+        if i == 1:
+                config.MAP.append(config.Color3)
+        else:
+                config.MAP.append(config.Color0)
 
 def Main():
         global Tick

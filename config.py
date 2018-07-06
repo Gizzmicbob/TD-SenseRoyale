@@ -27,7 +27,7 @@ PACKET_SIZE = 8192
 
 ###
 
-TickRate = 0.1
+TickRate = 0.5
 
 ###
 
@@ -35,6 +35,8 @@ UP = 119
 DOWN = 115
 LEFT = 97
 RIGHT = 100
+SHOOT = 32
+CHANGE = 113
 
 ###
 
@@ -43,12 +45,12 @@ CONTROLLING = player.Player1
 ###
 
 Color0 = (0,0,0)
-Color1 = (200,200,200) #p1
-Color2 = (200,200,200) #p2
-Color3 = (200,200,200) #p3
-Color4 = (200,200,200) #p4
+Color1 = (0,200,0) #p1
+Color2 = (0,200,200) #p2
+Color3 = (200,0,200) #p3
+Color4 = (200,200,0) #p4
 Color5 = (200,200,200) #gun
-Color6 = (200,200,200) #ob
+Color6 = (200,0,0) #ob
 
 ###
 
