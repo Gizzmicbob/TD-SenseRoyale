@@ -1,23 +1,9 @@
 import config
 import funcs
 import game
+import player
 drop = funcs.DropLine()
 allProj = []
-def IsEdge(pos):
-        if pos in game.right or pos in game.left or pos in game.top or pos in game.bottom:
-                return True
-def CheckImp(proj, position, direction): #use other funcs later
-        change = 0
-        if direction == 0:
-                change -= 16
-        elif direction == 1:
-                change += 1
-        elif direction == 2:
-                change += 16
-        elif direction == 3:
-                change -= 1
-        if config.MAP[position + change] != config.Color0 or IsEdge(position + change):
-                proj.toDie = True
 class Projectile:
         ###important - integrate with funcs###
         def __init__(self, direction, position, ttl, speed):
@@ -31,6 +17,32 @@ class Projectile:
                 self.toDie = False
                 self.buffer = True
                 allProj.append(self)
+        def CheckHit(self, point):
+                i = 0
+                for col in config.PlayerColors:
+                        if point == col:
+                                game.Kill(player.PlayerList[i])
+                        i += 1
+                                
+        def IsEdge(self, pos):
+                if pos in game.right or pos in game.left or pos in game.top or pos in game.bottom:
+                        return True
+        def CheckImp(self, position, direction): #use other funcs later
+                change = 0
+                if direction == 0:
+                        change -= 16
+                elif direction == 1:
+                        change += 1
+                elif direction == 2:
+                        change += 16
+                elif direction == 3:
+                        change -= 1
+                if config.MAP[position + change] != (config.Color0 or config.Color5): #or gun
+                        self.CheckHit(config.MAP[position + change])
+                        self.toDie = True
+                elif self.IsEdge(position + change):
+                        self.toDie = True
+                
         def Move(self):
                 if self.speed == 0 or self.slow == True:
                         if self.toDie or self.ttl == 0:
@@ -38,7 +50,7 @@ class Projectile:
                                 print("bullet lost")
                                 allProj.remove(self)
                                 return
-                        CheckImp(self, self.position, self.direction)
+                        self.CheckImp(self.position, self.direction)
                         self.ttl -= 1
                         self.slow = False
                         if self.direction == 0:

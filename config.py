@@ -10,7 +10,7 @@ TEXTSPEED = 0.04
 ###
 
 ID = 0
-ControllerID = 1
+ControllerID = 2
 ID_Set = False
 
 ###
@@ -27,7 +27,7 @@ PACKET_SIZE = 8192
 
 ###
 
-TickRate = 0.5
+TickRate = 0.1
 
 ###
 
@@ -40,7 +40,7 @@ CHANGE = 113
 
 ###
 
-CONTROLLING = player.Player1
+CONTROLLING = player.Player2
 
 ###
 
@@ -50,7 +50,10 @@ Color2 = (0,200,200) #p2
 Color3 = (200,0,200) #p3
 Color4 = (200,200,0) #p4
 Color5 = (200,200,200) #gun
-Color6 = (200,0,0) #ob
+Color6 = (255,0,0) #bullet
+Color7 = (200,100,0) #obstacle
+
+PlayerColors = [Color1,Color2,Color3,Color4] #in order of creation - parallel
 
 ###
 

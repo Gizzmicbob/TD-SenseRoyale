@@ -15,7 +15,7 @@ config.MAP = [] #this to not have a huge map in config, and to make it automatic
 for x in range(int(config.PI_COUNT * config.SCREEN_SIZE * config.SCREEN_SIZE)):
         i = random.randint(0,5)
         if i == 1:
-                config.MAP.append(config.Color3)
+                config.MAP.append(config.Color7)
         else:
                 config.MAP.append(config.Color0)
 

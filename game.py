@@ -30,6 +30,7 @@ def runGame(): #does the standard game stuff
                 #config.MAP[ply.old] = config.Color0 #sets old spot as a blank spot
 def GetPlayer(array):
         for ply in player.PlayerList:
+                print(str(array) + " " + str(ply))
                 if ply.id == array:
                         return ply
         return "null"
@@ -63,11 +64,24 @@ def IsEdge(ply, direction):
                         return True
         return False
 def RenderPlayer(ply):
-        config.MAP[ply.body1] = config.Color1
-        config.MAP[ply.body2] = config.Color1
-        if ply.weapon == 0:
-                config.MAP[ply.wep1] = config.Color5
-                config.MAP[ply.wep2] = config.Color5
+        play = player.PlayerList.index(ply)
+        if ply.alive:
+                config.MAP[ply.body1] = config.PlayerColors[play]
+                config.MAP[ply.body2] = config.PlayerColors[play]
+                if ply.weapon == 0:
+                        config.MAP[ply.wep1] = config.Color5
+                        config.MAP[ply.wep2] = config.Color5
+        else:
+                config.MAP[ply.body1] = config.Color7
+                config.MAP[ply.body2] = config.Color7
+                config.MAP[ply.wep1] = config.Color7
+                config.MAP[ply.wep2] = config.Color7
+def Kill(ply):
+        ply.alive = False
+        RenderPlayer(ply)
+        print("Someone died")
+        del config.PlayerColors[player.PlayerList.index(ply)]
+        player.PlayerList.remove(ply)
 """def SwitchDir(ply, direction):
         if ply.direction == 0:
                 #dirs = [ply.position, ply.]"""
