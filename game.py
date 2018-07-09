@@ -79,6 +79,9 @@ def IsEdge(ply, direction):
                         return True
         return False
 def RenderPlayer(ply):
+        if config.MAP[ply.body1] == config.Color9 or config.MAP[ply.body2] == config.Color9  or config.MAP[ply.wep1] == config.Color9  or config.MAP[ply.wep2] == config.Color9:
+                return
+        ClearOld(ply)
         #renders the player's current position on the map
         curWep = ply.curwep #the player's current weapon
         play = player.PlayerList.index(ply) #index of the player
@@ -219,19 +222,19 @@ def ReceiveKey(array): #find a neater way to do this
                 #clears old position and renders the player if there is no collision
                 if array[0] == config.UP:
                         if not Collision(ply, ply.position - funcs.DropLine(), 0, NegNum(funcs.DropLine())):
-                                ClearOld(ply)
+                                #ClearOld(ply)
                                 RenderPlayer(ply)
                 elif array[0] == config.RIGHT:
                         if not Collision(ply, ply.position + 1, 1, 1):
-                                ClearOld(ply)
+                                #ClearOld(ply)
                                 RenderPlayer(ply)
                 elif array[0] == config.LEFT:
                         if not Collision(ply, ply.position - 1, 3, NegNum(1)):
-                                ClearOld(ply)
+                                #ClearOld(ply)
                                 RenderPlayer(ply)
                 elif array[0] == config.DOWN:
                         if not Collision(ply, ply.position + funcs.DropLine(), 2, 16):
-                                ClearOld(ply)
+                                #ClearOld(ply)
                                 RenderPlayer(ply)
                 elif array[0] == config.SHOOT:
                         #shoots

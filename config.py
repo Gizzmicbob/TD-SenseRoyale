@@ -1,6 +1,6 @@
 import math
 #network stuff
-HOST = '172.20.189.183'
+HOST = '172.20.189.186'
 PORT = 5000
 PORT2 = 5001
 CAST = '224.0.0.1'

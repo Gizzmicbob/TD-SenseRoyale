@@ -5,6 +5,7 @@ import funcs
 import config
 import weapon
 import projectiles
+import game
 drop = funcs.DropLine()       
 
 class Player:
@@ -32,7 +33,7 @@ class Player:
                 self.wep1col = self.curwep.wep1
                 self.wep2col = self.curwep.wep2
                 #the player direction
-                self.direction = 0
+                self.direction = 2
                 #when the player last fired
                 self.lastfired = time.time()
                 #adds the player to the list
@@ -111,8 +112,17 @@ class Player:
                 self.direction = 1
 
 def AddPlayers():
+        #dodgy way to calculate spawn points
+        pos1 = game.top[0] + 2 + funcs.DropLine()
+        pos2 = game.right[0] - 1 + funcs.DropLine()
+        pos3 = game.bottom[0] - 2 - funcs.DropLine()
+        pos4 = game.left[config.SIDELEN - 1] + 2 - (funcs.DropLine() * 2)
+        print("Spawn1 : " + str(pos1))
+        print("Spawn2 : " + str(pos2))
+        print("Spawn3 : " + str(pos3))
+        print("Spawn4 : " + str(pos4))
         #initially adds all the players
-        Player1 = Player(50, 1)
-        Player2 = Player(100, 2)
-        Player3 = Player(150, 3)
-        Player4 = Player(200, 4)
+        Player1 = Player(pos1, 1)
+        Player2 = Player(pos2, 2)
+        Player3 = Player(pos3, 3)
+        Player4 = Player(pos4, 4)

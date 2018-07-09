@@ -9,7 +9,7 @@ drop = funcs.DropLine()
 allProj = []
 class Projectile:
         def __init__(self, direction, position, ttl, speed, accuracy):
-                print("New proj" + str(position))
+                print("New proj " + str(position))
                 #direction of new projectile
                 self.direction = direction
                 #position of the projectile
@@ -31,10 +31,14 @@ class Projectile:
                 #adds the projectile to the projectile list
                 allProj.append(self)
         def Loss(self):
-                allProj.remove(self) #removes projectile from the list
-                print("Bullet lost")
-                config.MAP[self.position] = config.Color0 #removes the projectile from the map
-                return
+                try:
+                        allProj.remove(self) #removes projectile from the list
+                        print("Bullet lost")
+                        config.MAP[self.position] = config.Color0 #removes the projectile from the map
+                        return
+                except:
+                        print("Struggled to destroy a projectile")
+                        return
         def CheckHit(self, point):
                 #checks if the projectile hit a player
                 #hits are based on color... might redo
@@ -44,11 +48,25 @@ class Projectile:
                                 game.Kill(player.PlayerList[i]) #kill the player
                         i += 1
                                 
-        def IsEdge(self, pos):
+        def IsEdge(self, pos, direction):
                 #checks if you're on the edge of the map
-                if pos in game.right or pos in game.left or pos in game.top or pos in game.bottom:
+                if pos in game.right and direction == 1:
+                        return True
+                elif pos in game.left and direction == 3:
+                        return True
+                elif pos in game.top and direction == 0:
+                        return True
+                elif pos in game.bottom and direction == 2:
                         return True
         def CheckImp(self, position, direction): #use other funcs later
+                print(direction)
+                if not self.buffer and self.accuracy == 0: #zero accuracy makes it melee
+                        if direction == 0:
+                                direction = 3 #doesn't go out of range
+
+                        else:
+                                direction -= 1 #goes left as melee attack
+                print(direction)
                 change = 0 #the position change made
                 if direction == 0:
                         change -= 16
@@ -58,6 +76,8 @@ class Projectile:
                         change += 16
                 elif direction == 3:
                         change -= 1
+                if self.IsEdge(position, direction) and self.accuracy == 0:
+                        return False
                 if config.MAP[position + change] == config.Color9: #if hit zone
                         self.Loss() #destroy bullet
                         return False
@@ -65,7 +85,7 @@ class Projectile:
                         print("Projectile hit " + str(config.MAP[position + change]))
                         self.CheckHit(config.MAP[position + change]) #check player hit
                         self.toDie = True #kills projectile next
-                elif self.IsEdge(position + change): #on edge
+                elif self.IsEdge(position + change, direction) and self.accuracy != 0: #on edge
                         self.toDie = True #kills projectile next
                 return True
         def AcMove(self, direction):
@@ -113,6 +133,7 @@ class Projectile:
 
                                 else:
                                         self.direction -= 1 #goes left as melee attack
+                                print(self.direction)
                         if not self.CheckImp(self.position, self.direction): #checks impact for this move
                                 return
                         self.AcMove(self.direction) #moves
