@@ -5,6 +5,7 @@ import display
 MenuSense = SenseHat()
         
 def ID_Choice():
+    #gets joystick presses and updates the display
     for event in MenuSense.stick.get_events():
         if event.action == "released":
             break

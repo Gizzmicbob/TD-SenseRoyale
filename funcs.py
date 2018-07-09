@@ -23,13 +23,13 @@ def Dropper():
     x = fPos
     iters = 1
     sPos = fPos
-    while x < fPos + (sideLen * config.SCREEN_SIZE): #probs not right
-        miniMap.append(config.MAP[int(x)])
+    while x < fPos + (sideLen * config.SCREEN_SIZE): #possibly not correct but break below to correct
+        miniMap.append(config.MAP[int(x)]) #adds this point to the minimap
         if x == sPos + config.SCREEN_SIZE or (iters == 1 and x == sPos + config.SCREEN_SIZE - 1): #be sure 0 works
-            x += DropLine() - config.SCREEN_SIZE #+/-
+            x += DropLine() - config.SCREEN_SIZE #drops for the next point
             sPos = x
             iters += 1
-        if len(miniMap) == 64:
+        if len(miniMap) == 64: #breaks when the map is big enough
             break
         x += 1
     display.UpdateDisplayCL(miniMap)
