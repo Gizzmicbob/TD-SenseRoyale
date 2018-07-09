@@ -114,9 +114,9 @@ class Player:
 def AddPlayers():
         #dodgy way to calculate spawn points
         pos1 = game.top[0] + 2 + funcs.DropLine()
-        pos2 = game.right[0] - 1 + funcs.DropLine()
-        pos3 = game.bottom[0] - 2 - funcs.DropLine()
-        pos4 = game.left[config.SIDELEN - 1] + 2 - (funcs.DropLine() * 2)
+        pos2 = game.right[0] - 1 + funcs.DropLine() 
+        pos3 = game.left[config.SIDELEN - 1] + 2 - (funcs.DropLine() * 2)
+        pos4 = game.bottom[0] - 2 - funcs.DropLine()
         print("Spawn1 : " + str(pos1))
         print("Spawn2 : " + str(pos2))
         print("Spawn3 : " + str(pos3))
