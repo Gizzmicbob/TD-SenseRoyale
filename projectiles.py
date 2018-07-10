@@ -33,7 +33,7 @@ class Projectile:
         def Loss(self):
                 try:
                         allProj.remove(self) #removes projectile from the list
-                        print("Bullet lost")
+                        print("Bullet lost at " + str(self.position))
                         config.MAP[self.position] = config.Color0 #removes the projectile from the map
                         return
                 except:
@@ -66,14 +66,13 @@ class Projectile:
 
                         else:
                                 direction -= 1 #goes left as melee attack
-                print(direction)
                 change = 0 #the position change made
                 if direction == 0:
-                        change -= 16
+                        change -= funcs.DropLine()
                 elif direction == 1:
                         change += 1
                 elif direction == 2:
-                        change += 16
+                        change += funcs.DropLine()
                 elif direction == 3:
                         change -= 1
                 if self.IsEdge(position, direction) and self.accuracy == 0:
@@ -91,14 +90,17 @@ class Projectile:
         def AcMove(self, direction):
                 #moves the player
                 if direction == 0:
-                        self.position -= 16
+                        self.position -= funcs.DropLine()
                 elif direction == 1:
                         self.position += 1
                 elif direction == 2:
-                        self.position += 16
+                        self.position += funcs.DropLine()
                 elif direction == 3:
                         self.position -= 1    
-                
+                if not self.buffer:
+                        config.MAP[self.old] = config.Color0 #removes old position from map
+                else:
+                        self.buffer = False
         def Move(self):
         #calculates movement
                 if time.time() > self.lastmove + self.speed: #can it move?
@@ -137,10 +139,6 @@ class Projectile:
                         if not self.CheckImp(self.position, self.direction): #checks impact for this move
                                 return
                         self.AcMove(self.direction) #moves
-                        if not self.buffer:
-                                config.MAP[self.old] = config.Color0 #removes old position from map
-                        else:
-                                self.buffer = False
                         config.MAP[self.position] = config.Color6 #sets the position to projectile color
                         self.old = self.position #updates old pos
 

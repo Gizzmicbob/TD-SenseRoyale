@@ -47,12 +47,12 @@ def Main():
                         #sets the map to display the winner's color
                         for x in range(len(config.MAP)): 
                                 config.MAP[x] = game.GameWin
-                        time.sleep(2) #delays
+                        time.sleep(0.1) #delays
                         #updates display (looped to make sure all Pis get this)
                         for x in range(5):
                                 display.UpdateDisplaySVR()
                         #delays, then resets by re-running initial functions
-                        time.sleep(5)
+                        time.sleep(3)
                         print("Game Resetting")
                         GenerateMap()
                         player.PlayerList = []

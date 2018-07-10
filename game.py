@@ -233,7 +233,7 @@ def ReceiveKey(array): #find a neater way to do this
                                 #ClearOld(ply)
                                 RenderPlayer(ply)
                 elif array[0] == config.DOWN:
-                        if not Collision(ply, ply.position + funcs.DropLine(), 2, 16):
+                        if not Collision(ply, ply.position + funcs.DropLine(), 2, funcs.DropLine()):
                                 #ClearOld(ply)
                                 RenderPlayer(ply)
                 elif array[0] == config.SHOOT:

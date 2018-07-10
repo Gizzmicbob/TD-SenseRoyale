@@ -19,6 +19,5 @@ def ID_Choice():
             tID += 1
         elif event.direction == "left":
             tID -= 1
-    print(tID)
     display.SendID(tID)
     return 0, False
