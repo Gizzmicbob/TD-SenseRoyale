@@ -1,5 +1,5 @@
-# TD-Shooter
-TD-Shooter is a top down battle royale style game. The point of this game is to use multiple SenseHats to make a large screen to play across.
+# TD-SenseRoyale
+TD-SenseRoyale is a top-down battle royale style game. The point of this game is to use multiple SenseHats to make a large screen to play across.
 To play, you need 4+ Raspberry Pis with SenseHats
 
 This is a project my lecturer gave me to experiment with some networking across the Pis. This being my second ever project in Python and being a little rushed, the code isn't the best but it works.

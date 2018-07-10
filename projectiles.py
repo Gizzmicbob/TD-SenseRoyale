@@ -135,7 +135,6 @@ class Projectile:
 
                                 else:
                                         self.direction -= 1 #goes left as melee attack
-                                print(self.direction)
                         if not self.CheckImp(self.position, self.direction): #checks impact for this move
                                 return
                         self.AcMove(self.direction) #moves
