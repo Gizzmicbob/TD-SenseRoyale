@@ -13,10 +13,11 @@ TEXTSPEED = 0.04 #ID text speed
 
 ID = 0 #don't change
 ID_Set = False
+CID_Set = False
 
 ###
 
-ControllerID = 2 #if controller, set this to your ID
+ControllerID = 1 #if controller, set this to your ID
 
 ###
 

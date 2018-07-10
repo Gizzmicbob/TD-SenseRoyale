@@ -52,9 +52,9 @@ The setup will require a bit of work.
 #### Controller
 - The Pi running this will control a player and display the screen.
 * Make sure the config.py HOST address is set to your server's IP.
-* Go into the config.py and set the controller ID. For each controller, add 1 to the ID, starting at 1 (script is setup for 4 players)
 * Now run the script from the terminal (controller needs the terminal).
-* Set the ID like you would wit the client.
+* Set the ID like you would with the client.
+* Set the Controller ID the same as above. For each controller, add 1 to the ID, starting at 1 (script is setup for 4 players)
 * Ensure a keyboard is plugged in and play.
 
 ## Updates

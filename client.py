@@ -17,7 +17,7 @@ resource.setrlimit(
 
 while True:
     if not config.ID_Set:
-        menu.ID_Choice() #if ID isn't set, keep trying
+        config.ID, config.ID_Set = menu.ID_Choice() #if ID isn't set, keep trying
     else:
         #generate map
         config.MAP = []

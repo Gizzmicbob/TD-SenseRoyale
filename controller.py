@@ -26,15 +26,20 @@ resource.setrlimit(
     (resource.RLIM_INFINITY, resource.RLIM_INFINITY))
 
 while True:
-    if not config.ID_Set:
-        menu.ID_Choice() #if ID isn't set, keep trying
-    else:
-        #generate map
-        config.MAP = []
-        for x in range(int(config.PI_COUNT * config.SCREEN_SIZE * config.SCREEN_SIZE)):
-                config.MAP.append(config.Color0)
-        config.DPS(sys.getsizeof(pickle.dumps(config.MAP)))
-        break
+        if not config.ID_Set:
+                config.ID, config.ID_Set = menu.ID_Choice() #if ID isn't set, keep trying
+        else:
+                break
+while True:
+        if not config.CID_Set:
+                config.ControllerID, config.CID_Set = menu.ID_Choice() #if ID isn't set, keep trying
+        else:
+                #generate map
+                config.MAP = []
+                for x in range(int(config.PI_COUNT * config.SCREEN_SIZE * config.SCREEN_SIZE)):
+                        config.MAP.append(config.Color0)
+                config.DPS(sys.getsizeof(pickle.dumps(config.MAP)))
+                break
 
 def main():
         #keep receiving from server
