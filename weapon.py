@@ -16,4 +16,4 @@ class Weapon:
 #initiates weapons
 wep1 = Weapon(16, 0.2, 0.5, 75, config.Color5, config.Color8)
 wep2 = Weapon(128, 0.01, 2.5, 100, config.Color5, config.Color5)
-wep3 = Weapon(2, 0.01, 0, 0, config.Color8, config.Color8)
+wep3 = Weapon(2, 0.01, 0.3, 0, config.Color8, config.Color8)
