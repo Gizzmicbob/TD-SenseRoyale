@@ -195,6 +195,8 @@ def NextClear(position, direction):
                 return True
         return False
 def Collision(ply, position, direction, npos):
+        if ply.lastfired + config.AFTER_FIRE > time.time():
+                return True
         if ply.direction != direction:
                 #rotates if not facing that direction
                 if not MoveBod(ply, direction):

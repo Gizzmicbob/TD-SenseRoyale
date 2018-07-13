@@ -59,7 +59,6 @@ class Projectile:
                 elif pos in game.bottom and direction == 2:
                         return True
         def CheckImp(self, position, direction): #use other funcs later
-                print(direction)
                 if not self.buffer and self.accuracy == 0: #zero accuracy makes it melee
                         if direction == 0:
                                 direction = 3 #doesn't go out of range

@@ -61,13 +61,14 @@ def Main():
                         game.GameStart()
                         started = False #makes this re-run some other initial functions
                         time.sleep(1) #delays to avoid issues
-                if Tick + config.TickRate < time.time():
-                        #keeps updating the game and the displays
-                        game.runGame()
-                        display.UpdateDisplaySVR()
-                        if not started:
-                                Start() #runs some startup stuff
-                        Tick = time.time() #updates the ticker time
+                #if Tick + config.TickRate < time.time():
+                #keeps updating the game and the displays
+                game.runGame()
+                display.UpdateDisplaySVR()
+                if not started:
+                        Start() #runs some startup stuff
+                Tick = time.time() #updates the ticker time
+                time.sleep(config.TickRate)
 
 #creates some threads
 thread = threading.Thread(target=networking.ReceiveSVR)
