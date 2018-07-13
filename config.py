@@ -60,7 +60,7 @@ Color4 = (255,255,0) #p4
 Color5 = (200,200,200) #gun
 Color6 = (255,0,0) #bullet
 Color7 = (200,100,0) #obstacle
-Color8 = (255,180,0) #reload
+Color8 = (150,0,0) #reload
 Color9 = (0,0,255) #zone
 PlayerColors  = []
 #resets player colors
