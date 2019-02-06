@@ -68,3 +68,5 @@ Due to not owning enough Pis to test this at home, it is unlikely this will rece
 #### Not displaying correctly
 * Make sure to set all IDs correctly
 * Do not use the server as a client or controller at the same time
+#### Connection issues
+* There is an issue with the socket library that requires your default gateway to be set correctly even though it shouldn't be required. If you have connection issues, try fiddle with that. (had this issue a while ago so I can't recall the exact details)
